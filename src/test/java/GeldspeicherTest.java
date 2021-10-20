@@ -29,14 +29,14 @@ public class GeldspeicherTest {
 
         hinzugefuegterWert += Muenze.Euro1.holeWert();
         geldspeicher.hinzufuegen(Muenze.Euro1);
-        Assertions.assertEquals(geldspeicher.holeGesamtwert(), initialerGesamtwert + hinzugefuegterWert);
+        Assertions.assertEquals(geldspeicher.holeGesamtbetrag(), initialerGesamtwert + hinzugefuegterWert);
 
         hinzugefuegterWert += Muenze.Euro1.holeWert() * 2;
         geldspeicher.hinzufuegen(Muenze.Euro1, 2);
-        Assertions.assertEquals(geldspeicher.holeGesamtwert(), initialerGesamtwert + hinzugefuegterWert);
+        Assertions.assertEquals(geldspeicher.holeGesamtbetrag(), initialerGesamtwert + hinzugefuegterWert);
 
         assertThrows(MindestwertUnterschrittenException.class, () -> geldspeicher.hinzufuegen(Muenze.Euro1, -1));
-        Assertions.assertEquals(geldspeicher.holeGesamtwert(), initialerGesamtwert + hinzugefuegterWert);
+        Assertions.assertEquals(geldspeicher.holeGesamtbetrag(), initialerGesamtwert + hinzugefuegterWert);
     }
 
 }
