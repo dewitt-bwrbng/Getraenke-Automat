@@ -11,7 +11,7 @@ public class GeldspeicherTest {
     private int initialerGesamtwert;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws MindestwertUnterschrittenException {
         // initialen gesamtwert zuruecksetzen
         initialerGesamtwert = 0;
 
@@ -24,7 +24,7 @@ public class GeldspeicherTest {
     }
 
     @Test
-    void hinzufuegen() {
+    void hinzufuegen() throws MindestwertUnterschrittenException {
         int hinzugefuegterWert = 0;
 
         hinzugefuegterWert += Muenze.Euro1.holeWert();
