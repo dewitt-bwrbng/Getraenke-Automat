@@ -1,4 +1,4 @@
-package arbeitsprobe.automat;
+package arbeitsprobe.automat.artikel;
 
 public class ArtikelEinheit {
 

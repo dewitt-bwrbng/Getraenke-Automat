@@ -1,4 +1,4 @@
-package arbeitsprobe.automat;
+package arbeitsprobe.automat.geld;
 
 public enum Muenze {
     Cent10(10),

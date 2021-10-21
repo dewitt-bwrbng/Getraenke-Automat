@@ -1,5 +1,6 @@
-package arbeitsprobe.automat;
+package arbeitsprobe.automat.geld;
 
+import arbeitsprobe.automat.artikel.Artikel;
 import arbeitsprobe.automat.exceptions.GeldEntnahmeNichtMoeglichException;
 import arbeitsprobe.automat.exceptions.MindestwertUnterschrittenException;
 import arbeitsprobe.automat.exceptions.MuenzeNichtVorhandenException;
@@ -20,7 +21,7 @@ public class GeldSpeicher {
         try {
             hinzufuegen(muenze, 1);
         } catch (MindestwertUnterschrittenException e) {
-            throw new RuntimeException("Unerwarteter Fehler. Das hinzufuegen einer arbeitsprobe.automat.Muenze sollte nicht fehlschlagen, da die Anzahl fix auf 1 gesetzt ist und der Mindestwert somit nicht untschritten.", e);
+            throw new RuntimeException("Unerwarteter Fehler. Das hinzufuegen einer arbeitsprobe.automat.geld.Muenze sollte nicht fehlschlagen, da die Anzahl fix auf 1 gesetzt ist und der Mindestwert somit nicht untschritten.", e);
         }
     }
 

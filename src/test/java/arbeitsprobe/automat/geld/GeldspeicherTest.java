@@ -1,7 +1,9 @@
-package arbeitsprobe.automat;
+package arbeitsprobe.automat.geld;
 
 import arbeitsprobe.automat.exceptions.GeldEntnahmeNichtMoeglichException;
 import arbeitsprobe.automat.exceptions.MindestwertUnterschrittenException;
+import arbeitsprobe.automat.geld.GeldSpeicher;
+import arbeitsprobe.automat.geld.Muenze;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package arbeitsprobe.automat;
+package arbeitsprobe.automat.artikel;
 
 import arbeitsprobe.automat.exceptions.FachNichtLeerException;
 import arbeitsprobe.automat.exceptions.KeineArtikelEinheitenImFachException;

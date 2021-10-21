@@ -1,11 +1,13 @@
-package arbeitsprobe.automat;
+package arbeitsprobe.automat.artikel;
 
-public class Artikel {
+public final class Artikel {
 
     private String name;
     private int preis;
 
-    public Artikel(String name, int preis) {
+    // Nur im Paket arbeitsprobe.automat.artikel verwendbar.
+    // Artikel sollen nur ueber den ArtikelManager erzeugt werden.
+    Artikel(String name, int preis) {
         this.name = name;
         this.preis = preis;
     }

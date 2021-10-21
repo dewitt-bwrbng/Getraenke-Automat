@@ -1,5 +1,8 @@
-package arbeitsprobe.automat;
+package arbeitsprobe.automat.artikel;
 
+import arbeitsprobe.automat.artikel.Artikel;
+import arbeitsprobe.automat.artikel.ArtikelEinheit;
+import arbeitsprobe.automat.artikel.ArtikelFach;
 import arbeitsprobe.automat.exceptions.FachNichtLeerException;
 import arbeitsprobe.automat.exceptions.KeineArtikelEinheitenImFachException;
 import arbeitsprobe.automat.exceptions.UnterschiedlicheArtikelException;
