@@ -1,5 +1,7 @@
 package arbeitsprobe.automat.artikel;
 
+import java.util.Objects;
+
 public final class Artikel {
 
     private String name;
@@ -26,5 +28,18 @@ public final class Artikel {
 
     public void setzePreis(int preis) {
         this.preis = preis;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Artikel artikel = (Artikel) o;
+        return preis == artikel.preis && Objects.equals(name, artikel.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, preis);
     }
 }
