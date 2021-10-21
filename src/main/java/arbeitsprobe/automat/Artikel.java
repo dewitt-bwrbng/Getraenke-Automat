@@ -1,3 +1,5 @@
+package arbeitsprobe.automat;
+
 public class Artikel {
 
     private String name;

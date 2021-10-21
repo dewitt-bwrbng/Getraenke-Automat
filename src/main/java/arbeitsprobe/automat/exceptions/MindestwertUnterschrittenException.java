@@ -1,4 +1,4 @@
-package exceptions;
+package arbeitsprobe.automat.exceptions;
 
 public class MindestwertUnterschrittenException extends Throwable {
 

@@ -1,3 +1,5 @@
+package arbeitsprobe.automat;
+
 public enum Muenze {
     Cent10(10),
     Cent20(20),
