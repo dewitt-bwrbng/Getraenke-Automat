@@ -1,5 +1,6 @@
 package arbeitsprobe.automat;
 
+import arbeitsprobe.automat.exceptions.GeldEntnahmeNichtMoeglichException;
 import arbeitsprobe.automat.exceptions.MindestwertUnterschrittenException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,6 +61,37 @@ public class GeldspeicherTest {
         Assertions.assertEquals(testSpeicher.holeGesamtbetrag(), initialerGesamtwert + Muenze.Euro1.holeWert());
     }
 
+    @Test
+    void testIstEntnahmeMoeglich() {
+        Assertions.assertTrue(geldspeicher.istEntnahmeMoeglich(10));
+        Assertions.assertFalse(geldspeicher.istEntnahmeMoeglich(1));
+        Assertions.assertFalse(geldspeicher.istEntnahmeMoeglich(-1));
+        Assertions.assertFalse(geldspeicher.istEntnahmeMoeglich(Integer.MAX_VALUE));
+        Assertions.assertFalse(geldspeicher.istEntnahmeMoeglich(Integer.MIN_VALUE));
+    }
 
+    @Test
+    void tesEntnehmeGeld() throws GeldEntnahmeNichtMoeglichException {
+        int entnahme1 = 10;
+        GeldSpeicher ergebnis = geldspeicher.entnehmeGeld(entnahme1);
+        Assertions.assertEquals(ergebnis.holeGesamtbetrag(), entnahme1);
+        Assertions.assertEquals(geldspeicher.holeGesamtbetrag(), initialerGesamtwert - entnahme1);
 
+        int entnahme2 = 380;
+        GeldSpeicher ergebnis2 = geldspeicher.entnehmeGeld(entnahme2);
+        Assertions.assertEquals(ergebnis2.holeGesamtbetrag(), entnahme2);
+        Assertions.assertEquals(geldspeicher.holeGesamtbetrag(), initialerGesamtwert - entnahme1 - entnahme2);
+
+        int entnahme3 = 0;
+        GeldSpeicher ergebnis3 = geldspeicher.entnehmeGeld(entnahme3);
+        Assertions.assertEquals(ergebnis3.holeGesamtbetrag(), entnahme3);
+        Assertions.assertEquals(geldspeicher.holeGesamtbetrag(), initialerGesamtwert - entnahme1 - entnahme2 - entnahme3);
+
+        Assertions.assertThrows(GeldEntnahmeNichtMoeglichException.class, () -> geldspeicher.entnehmeGeld(1));
+        Assertions.assertThrows(GeldEntnahmeNichtMoeglichException.class, () -> geldspeicher.entnehmeGeld(-1));
+        Assertions.assertThrows(GeldEntnahmeNichtMoeglichException.class, () -> geldspeicher.entnehmeGeld(-10));
+        Assertions.assertThrows(GeldEntnahmeNichtMoeglichException.class, () -> geldspeicher.entnehmeGeld(1000));
+        Assertions.assertThrows(GeldEntnahmeNichtMoeglichException.class, () -> geldspeicher.entnehmeGeld(Integer.MAX_VALUE));
+        Assertions.assertThrows(GeldEntnahmeNichtMoeglichException.class, () -> geldspeicher.entnehmeGeld(Integer.MIN_VALUE));
+    }
 }
