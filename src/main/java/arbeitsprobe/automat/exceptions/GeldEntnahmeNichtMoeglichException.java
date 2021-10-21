@@ -1,6 +1,6 @@
 package arbeitsprobe.automat.exceptions;
 
-public class GeldEntnahmeNichtMoeglichException extends Throwable {
+public class GeldEntnahmeNichtMoeglichException extends Exception {
     public GeldEntnahmeNichtMoeglichException(int wert) {
         super("Geldentnahme in Hoehe von " + wert + " Cent ist nicht moeglich.");
     }
