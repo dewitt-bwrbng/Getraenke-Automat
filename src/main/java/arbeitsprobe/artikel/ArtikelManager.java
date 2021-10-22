@@ -11,6 +11,11 @@ public class ArtikelManager {
     }
 
     public Artikel erzeugeArtikel(String name, int preis) throws UngueltigerPreisException {
+        if(name == null) {
+            throw new NullPointerException("Name ist nicht gesetzt.");
+        }
+
+        // Pruefen, ob ein gültiger Preis uebergeben wurde
         if(preis <= 0 || preis % 10 != 0) {
             throw new UngueltigerPreisException(preis);
         }
@@ -25,6 +30,10 @@ public class ArtikelManager {
     public void setzeArtikelInFach(int fachIndex, Artikel artikel) throws UngueltigesFachException, FachNichtLeerException {
         if(!existiertFach(fachIndex)) {
             throw new UngueltigesFachException(fachIndex);
+        }
+
+        if(artikel == null) {
+            throw new NullPointerException("Artikel ist nicht gesetzt.");
         }
 
         ArtikelFach artikelFach = artikelFaecher[fachIndex];
@@ -90,6 +99,9 @@ public class ArtikelManager {
     }
 
     public void auffuellen(int fachIndex, ArtikelEinheit... artikelEinheiten) throws UngueltigesFachException, FachNichtZugewiesenException, UnterschiedlicheArtikelException {
+        if(artikelEinheiten == null) {
+            throw new NullPointerException("artikelEinheiten ist nicht gesetzt.");
+        }
         ArtikelFach artikelFach = holeArtikelFach(fachIndex);
         artikelFach.fuellen(artikelEinheiten);
     }

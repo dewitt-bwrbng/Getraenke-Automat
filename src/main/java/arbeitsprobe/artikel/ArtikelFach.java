@@ -22,6 +22,7 @@ public class ArtikelFach {
     }
 
     public void fuellen(ArtikelEinheit... einheiten) throws UnterschiedlicheArtikelException {
+        // Pruefen, ob Artikeleinheiten mit einem unpassenden Artikel uebergeben wurden
         List<ArtikelEinheit> ungueltigeArtikelEinheiten = Arrays.stream(einheiten).filter(e -> !e.holeArtikel().equals(artikel)).collect(Collectors.toList());
         if(ungueltigeArtikelEinheiten.size() != 0) {
             throw new UnterschiedlicheArtikelException(artikel, ungueltigeArtikelEinheiten.get(0).holeArtikel());

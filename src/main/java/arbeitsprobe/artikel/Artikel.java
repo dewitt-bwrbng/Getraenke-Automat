@@ -18,16 +18,8 @@ public final class Artikel {
         return name;
     }
 
-    public void setzeName(String name) {
-        this.name = name;
-    }
-
     public int holePreis() {
         return preis;
-    }
-
-    public void setzePreis(int preis) {
-        this.preis = preis;
     }
 
     @Override

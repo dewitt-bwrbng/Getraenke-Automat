@@ -29,6 +29,7 @@ public class ArtikelManagerTest {
 
     @Test
     void testErzeugeArtikel() throws UngueltigerPreisException {
+        Assertions.assertThrows(NullPointerException.class, () -> manager.erzeugeArtikel(null, 0));
         Assertions.assertThrows(UngueltigerPreisException.class, () -> manager.erzeugeArtikel("Testartikel", -1));
         Artikel artikel = manager.erzeugeArtikel("Testartikel", 10);
         Assertions.assertNotNull(artikel);
@@ -38,9 +39,11 @@ public class ArtikelManagerTest {
     void testArtikelHinzufuegen() throws UngueltigerPreisException, UngueltigesFachException, FachNichtLeerException, FachNichtZugewiesenException, UnterschiedlicheArtikelException {
         Assertions.assertThrows(UngueltigesFachException.class, () -> manager.setzeArtikelInFach(-1, artikel1));
         Assertions.assertThrows(UngueltigesFachException.class, () -> manager.setzeArtikelInFach(3, artikel1));
+        Assertions.assertThrows(NullPointerException.class, () -> manager.setzeArtikelInFach(2, null));
         manager.setzeArtikelInFach(2, manager.erzeugeArtikel("Testartikel", 10));
 
         // Fach fuellen und versuchen Artikel zu setzen
+        Assertions.assertThrows(NullPointerException.class, () -> manager.auffuellen(0, null));
         manager.auffuellen(0, new ArtikelEinheit(artikel1));
         Assertions.assertThrows(FachNichtLeerException.class, () -> manager.setzeArtikelInFach(0, artikel2));
     }

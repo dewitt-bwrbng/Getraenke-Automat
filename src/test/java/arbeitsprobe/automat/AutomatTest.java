@@ -59,24 +59,23 @@ public class AutomatTest {
     @Test
     void testKaufen() throws UngueltigesFachException, FachNichtZugewiesenException, UnterschiedlicheArtikelException, KaufFehlgeschlagenException {
         setUpArtikel();
-
         int betragInMuenzfachVorKauf = ((AutomatenAdministration)getraenkeAutomat).holeGesamtbetragInMuenzfach();
 
+        // Artikel kaufen
         getraenkeAutomat.muenzeEinwerfen(Muenze.Euro1, Muenze.Cent20);
         KaufErgebnis ergebnis = getraenkeAutomat.kaufen(0);
         Assertions.assertNotNull(ergebnis.holeArtikelEinheit());
         Assertions.assertEquals(0, ergebnis.holeWechselgeld().holeGesamtbetrag());
         Assertions.assertEquals(betragInMuenzfachVorKauf + 120, ((AutomatenAdministration)getraenkeAutomat).holeGesamtbetragInMuenzfach());
 
-        // Kein weiterer Artikel
+        // Keine weitere ArtikelEinheit
         getraenkeAutomat.muenzeEinwerfen(Muenze.Euro1, Muenze.Cent20);
         Assertions.assertThrows(KaufFehlgeschlagenException.class, () -> getraenkeAutomat.kaufen(0));
 
-        // Weiteren Artikel hinzufuegen
+        // Verusch des Kaufes mit nicht wechselbaren Einwurf
         setUpArtikel();
         getraenkeAutomat.muenzeEinwerfen(Muenze.Euro2);
         Assertions.assertThrows(KaufFehlgeschlagenException.class, () -> getraenkeAutomat.kaufen(0));
-
         Assertions.assertThrows(KaufFehlgeschlagenException.class, () -> getraenkeAutomat.kaufen(1));
         Assertions.assertThrows(KaufFehlgeschlagenException.class, () -> getraenkeAutomat.kaufen(-1));
 

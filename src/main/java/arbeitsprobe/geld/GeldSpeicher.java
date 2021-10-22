@@ -1,5 +1,6 @@
 package arbeitsprobe.geld;
 
+import arbeitsprobe.exceptions.FalschesErgebnisGeldEntnahmeException;
 import arbeitsprobe.exceptions.GeldEntnahmeNichtMoeglichException;
 import arbeitsprobe.exceptions.MindestwertUnterschrittenException;
 import arbeitsprobe.exceptions.MuenzeNichtVorhandenException;
@@ -104,21 +105,27 @@ public class GeldSpeicher {
 
         GeldSpeicher entnahme = new GeldSpeicher();
 
-        // Damit der entsprechende Wert mit den vorhanden Muenzen entommen werden kann,
-        // wird durch alle muenzen in absteigender Wertigkeit iteriert. Damit werden so wenig einzelne Muenzen wie moeglich entnommen
-        Iterator<Muenze> iterator = muenzen.keySet().stream().sorted((muenze1, muenze2) -> Integer.compare(muenze1.holeWert(), muenze2.holeWert()) * -1).iterator();
+        int zuEntnehmenderWert = wert;
 
+        // Damit der entsprechende Wert mit den vorhanden Muenzen entommen werden kann,
+        // wird durch alle muenzen in absteigender Wertigkeit iteriert. Damit werden so wenig einzelne Muenzen wie moeglich entnommen.
+        // Wenn der zurueckzugebende Wert kleiner als die Wertigkeit der aktuellen Muenze ist, wird die naechst kleineren Muenze genommen.
+        Iterator<Muenze> iterator = muenzen.keySet().stream().sorted((muenze1, muenze2) -> Integer.compare(muenze1.holeWert(), muenze2.holeWert()) * -1).iterator();
         try {
             while(iterator.hasNext()) {
                 Muenze muenze = iterator.next();
 
-                while(wert > 0 && istMuenzeVorhanden(muenze) && muenze.holeWert() <= wert) {
+                while(zuEntnehmenderWert > 0 && istMuenzeVorhanden(muenze) && muenze.holeWert() <= zuEntnehmenderWert) {
                     entnehmeMuenze(muenze);
-                    wert -= muenze.holeWert();
+                    zuEntnehmenderWert -= muenze.holeWert();
                     entnahme.hinzufuegen(muenze);
                 }
             }
-        } catch (MuenzeNichtVorhandenException e) {
+
+            if(zuEntnehmenderWert != 0) {
+                throw new FalschesErgebnisGeldEntnahmeException(wert, zuEntnehmenderWert);
+            }
+        } catch (FalschesErgebnisGeldEntnahmeException|MuenzeNichtVorhandenException e) {
             // Bei der Berechnung der Muenzen gab es einen Fehler.
             // Daher muessen die bereits entnommenen Muenzen wieder zurueck transferiert werden
             try {
@@ -130,6 +137,7 @@ public class GeldSpeicher {
             }
             throw new GeldEntnahmeNichtMoeglichException(wert, e);
         }
+
 
         return entnahme;
     }
