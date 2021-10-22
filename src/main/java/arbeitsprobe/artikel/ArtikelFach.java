@@ -1,8 +1,8 @@
-package arbeitsprobe.automat.artikel;
+package arbeitsprobe.artikel;
 
-import arbeitsprobe.automat.exceptions.FachNichtLeerException;
-import arbeitsprobe.automat.exceptions.KeineArtikelEinheitenImFachException;
-import arbeitsprobe.automat.exceptions.UnterschiedlicheArtikelException;
+import arbeitsprobe.exceptions.FachNichtLeerException;
+import arbeitsprobe.exceptions.KeineArtikelEinheitenImFachException;
+import arbeitsprobe.exceptions.UnterschiedlicheArtikelException;
 
 import java.util.*;
 import java.util.stream.Collectors;

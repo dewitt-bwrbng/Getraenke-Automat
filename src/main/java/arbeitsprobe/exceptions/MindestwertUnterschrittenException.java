@@ -1,4 +1,4 @@
-package arbeitsprobe.automat.exceptions;
+package arbeitsprobe.exceptions;
 
 public class MindestwertUnterschrittenException extends Exception {
 

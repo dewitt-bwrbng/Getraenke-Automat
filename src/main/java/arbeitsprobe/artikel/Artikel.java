@@ -1,4 +1,4 @@
-package arbeitsprobe.automat.artikel;
+package arbeitsprobe.artikel;
 
 import java.util.Objects;
 

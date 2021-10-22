@@ -1,6 +1,6 @@
-package arbeitsprobe.automat.exceptions;
+package arbeitsprobe.exceptions;
 
-import arbeitsprobe.automat.artikel.Artikel;
+import arbeitsprobe.artikel.Artikel;
 
 public class KeineArtikelEinheitenImFachException extends Exception {
     public KeineArtikelEinheitenImFachException(Artikel artikel) {

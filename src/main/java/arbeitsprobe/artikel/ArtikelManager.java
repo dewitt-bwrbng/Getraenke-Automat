@@ -1,6 +1,6 @@
-package arbeitsprobe.automat.artikel;
+package arbeitsprobe.artikel;
 
-import arbeitsprobe.automat.exceptions.*;
+import arbeitsprobe.exceptions.*;
 
 public class ArtikelManager {
 

@@ -1,11 +1,8 @@
-package arbeitsprobe.automat.artikel;
+package arbeitsprobe.artikel;
 
-import arbeitsprobe.automat.artikel.Artikel;
-import arbeitsprobe.automat.artikel.ArtikelEinheit;
-import arbeitsprobe.automat.artikel.ArtikelFach;
-import arbeitsprobe.automat.exceptions.FachNichtLeerException;
-import arbeitsprobe.automat.exceptions.KeineArtikelEinheitenImFachException;
-import arbeitsprobe.automat.exceptions.UnterschiedlicheArtikelException;
+import arbeitsprobe.exceptions.FachNichtLeerException;
+import arbeitsprobe.exceptions.KeineArtikelEinheitenImFachException;
+import arbeitsprobe.exceptions.UnterschiedlicheArtikelException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

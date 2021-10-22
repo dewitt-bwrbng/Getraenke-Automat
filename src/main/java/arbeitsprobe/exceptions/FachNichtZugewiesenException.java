@@ -1,4 +1,4 @@
-package arbeitsprobe.automat.exceptions;
+package arbeitsprobe.exceptions;
 
 public class FachNichtZugewiesenException extends Throwable {
     public FachNichtZugewiesenException(int fach) {

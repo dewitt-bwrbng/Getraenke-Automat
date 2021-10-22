@@ -1,6 +1,6 @@
-package arbeitsprobe.automat.exceptions;
+package arbeitsprobe.exceptions;
 
-import arbeitsprobe.automat.geld.Muenze;
+import arbeitsprobe.geld.Muenze;
 
 public class MuenzeNichtVorhandenException extends Exception {
 

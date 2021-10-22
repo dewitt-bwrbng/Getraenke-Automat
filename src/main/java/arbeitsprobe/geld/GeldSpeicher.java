@@ -1,9 +1,8 @@
-package arbeitsprobe.automat.geld;
+package arbeitsprobe.geld;
 
-import arbeitsprobe.automat.artikel.Artikel;
-import arbeitsprobe.automat.exceptions.GeldEntnahmeNichtMoeglichException;
-import arbeitsprobe.automat.exceptions.MindestwertUnterschrittenException;
-import arbeitsprobe.automat.exceptions.MuenzeNichtVorhandenException;
+import arbeitsprobe.exceptions.GeldEntnahmeNichtMoeglichException;
+import arbeitsprobe.exceptions.MindestwertUnterschrittenException;
+import arbeitsprobe.exceptions.MuenzeNichtVorhandenException;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -21,7 +20,7 @@ public class GeldSpeicher {
         try {
             hinzufuegen(muenze, 1);
         } catch (MindestwertUnterschrittenException e) {
-            throw new RuntimeException("Unerwarteter Fehler. Das hinzufuegen einer arbeitsprobe.automat.geld.Muenze sollte nicht fehlschlagen, da die Anzahl fix auf 1 gesetzt ist und der Mindestwert somit nicht untschritten.", e);
+            throw new RuntimeException("Unerwarteter Fehler. Das hinzufuegen einer arbeitsprobe.geld.Muenze sollte nicht fehlschlagen, da die Anzahl fix auf 1 gesetzt ist und der Mindestwert somit nicht untschritten.", e);
         }
     }
 
@@ -58,16 +57,36 @@ public class GeldSpeicher {
     }
 
     public boolean istEntnahmeMoeglich(int wert) {
+        // Negative Betraege koennen nicht entnommen werden
         if(wert < 0) {
             return false;
         }
 
+        // Ein höherer Betrag als der verfügbare kann nicht entnommen werden.
         if(holeGesamtbetrag() < wert) {
             return false;
         }
 
         // Da die Wertigkeit der kleinsten Muenze 10 Cent betraegt muss der zu entnehmende Wert durch 10 Teilbar sein
-        return wert % 10 == 0;
+        if(wert % 10 != 0) {
+            return false;
+        }
+
+        // Dieser Algorithmus ist aehnlich dem aus der Methode entnehmeGeld.
+        // Hier wird jedoch nicht der Zustand des Muenzfaches veraendert.
+        // Die Berechnug basiert auf einer Kopie der Map<Muenze, Integer> muenzen.
+        Map<Muenze, Integer> kopie = new HashMap<>(muenzen);
+        Iterator<Muenze> iterator =  kopie.keySet().stream().sorted((muenze1, muenze2) -> Integer.compare(muenze1.holeWert(), muenze2.holeWert()) * -1).iterator();
+        while(iterator.hasNext()) {
+            Muenze muenze = iterator.next();
+            while (wert > 0 && kopie.get(muenze) > 0 && muenze.holeWert() <= wert) {
+                kopie.put(muenze, kopie.get(muenze) - 1);
+                wert -= muenze.holeWert();
+            }
+        }
+
+        // wert ist 0, wenn der Betrag entnommen werden kann
+        return wert == 0;
     }
 
     private void entnehmeMuenze(Muenze muenze) throws MuenzeNichtVorhandenException {

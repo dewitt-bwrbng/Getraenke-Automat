@@ -1,6 +1,6 @@
-package arbeitsprobe.automat.artikel;
+package arbeitsprobe.artikel;
 
-import arbeitsprobe.automat.exceptions.*;
+import arbeitsprobe.exceptions.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

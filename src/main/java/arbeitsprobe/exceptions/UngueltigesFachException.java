@@ -1,4 +1,4 @@
-package arbeitsprobe.automat.exceptions;
+package arbeitsprobe.exceptions;
 
 public class UngueltigesFachException extends Exception {
     public UngueltigesFachException(int fachIndex) {

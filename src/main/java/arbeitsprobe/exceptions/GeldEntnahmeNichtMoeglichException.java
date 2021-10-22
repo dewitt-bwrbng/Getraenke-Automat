@@ -1,4 +1,4 @@
-package arbeitsprobe.automat.exceptions;
+package arbeitsprobe.exceptions;
 
 public class GeldEntnahmeNichtMoeglichException extends Exception {
     public GeldEntnahmeNichtMoeglichException(int wert) {
