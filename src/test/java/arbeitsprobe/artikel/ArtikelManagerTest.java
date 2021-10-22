@@ -42,8 +42,9 @@ public class ArtikelManagerTest {
         Assertions.assertThrows(NullPointerException.class, () -> manager.setzeArtikelInFach(2, null));
         manager.setzeArtikelInFach(2, manager.erzeugeArtikel("Testartikel", 10));
 
+        Assertions.assertThrows(NullPointerException.class, () -> manager.auffuellen(0, (ArtikelEinheit) null));
+
         // Fach fuellen und versuchen Artikel zu setzen
-        Assertions.assertThrows(NullPointerException.class, () -> manager.auffuellen(0, null));
         manager.auffuellen(0, new ArtikelEinheit(artikel1));
         Assertions.assertThrows(FachNichtLeerException.class, () -> manager.setzeArtikelInFach(0, artikel2));
     }
