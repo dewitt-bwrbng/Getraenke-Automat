@@ -6,7 +6,6 @@ import arbeitsprobe.artikel.ArtikelManager;
 import arbeitsprobe.exceptions.*;
 import arbeitsprobe.geld.GeldSpeicher;
 import arbeitsprobe.geld.Muenze;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class GetraenkeAutomatImpl implements Automat, AutomatenAdministration {
 
